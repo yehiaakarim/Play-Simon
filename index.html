@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="./assets/simon.webp" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+  <title>Simon Game</title>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    <title>Simon Game</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+<body>
+  <div class="disGrid">
+    <h1 id="level-title">On Pc Press ANY Key To Start, on Mobile Touch Me To Start</h1>
+    <div class="box" onclick="clicked()">
+      <p class="hello">Hello 👋</p>
+      <p class="over">Hover Over Me To Read The Instructions!</p>
+      <div class="hid-box">
+        <p>Start The Game so one
+          of the 4 colored Buttons Will fade out and in,
+          Click On That Button To Go To Level 2, Then Follow the pattern of lights and sounds
+          and repeat the same combination to move on to the next level.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div>
+
+        <div type="button" id="green" class="btn green">
+
+        </div>
+
+        <div type="button" id="red" class="btn red">
+
+        </div>
+      </div>
+
+      <div>
+
+        <div type="button" id="yellow" class="btn yellow">
+
+        </div>
+        <div type="button" id="purple" class="btn purple">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function loadScript(src, callback) {
+      let script = document.createElement('script');
+      script.src = src;
+      script.type = 'text/javascript';
+
+      script.onerror = function () {
+        console.error(`Error loading script: ${src}`);
+      };
+
+      script.onload = function () {
+        if (callback) callback();
+      };
+
+      document.head.appendChild(script);
+    }
+
+    function isTouchOnly() {
+      // If it supports touch, but is a touch-only device (no mouse/keyboard)
+      return ('ontouchstart' in window || navigator.maxTouchPoints > 0) && window.matchMedia("(pointer: coarse)").matches;
+    }
+
+    function isTouchAndKeyboard() {
+      // If it supports touch, but the pointer is not coarse (meaning it has a keyboard or mouse)
+      return ('ontouchstart' in window || navigator.maxTouchPoints > 0) && !window.matchMedia("(pointer: coarse)").matches;
+    }
+
+    function isKeyboardOnly() {
+      return !('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    }
+
+    if (isTouchOnly()) {
+      loadScript('game.js');
+    } else if (isTouchAndKeyboard()) {
+      loadScript('game1.js');
+    } else if (isKeyboardOnly()) {
+      loadScript('game1.js');
+    }
+
+  </script>
+</body>
+
+</html>
